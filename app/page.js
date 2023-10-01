@@ -11,10 +11,8 @@ export default function Home() {
   },[])
 
   async function fetchPosts(){
-    const {data} = await supabase.from("posts").select("*")
-    setPosts(data || [])
-    console.log("The data is")
-    console.log(data)
+    const {data} = await supabase.from("posts").select()
+    setPosts(data)
   }
 
   async function createPost(){
@@ -35,6 +33,7 @@ export default function Home() {
     {
       posts.map(post => (
         <div key={post.id}>
+          <h1>Posts</h1>
           <h3>{post.title}</h3>
           <p>{post.content}</p>
         </div>
@@ -43,6 +42,11 @@ export default function Home() {
    </div>
   )
 }
+
+
+//In order to read or write data to the database, we need to change the RLS policy for the table. Tou wo UI sae easily ho jata hae. 
+
+
 
 
 
